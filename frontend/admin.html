@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registered Users | SGX Exim Private Limited</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .admin-wrap {
+    max-width: 900px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 0.85rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  tr:hover { background: #FAFAFA; }
+  .empty-msg {
+    text-align: center;
+    padding: 30px;
+    color: #888;
+    background: #fff;
+  }
+  .count-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+<nav>
+  <div class="brand">
+    <div class="logo">SGX</div>
+    <div class="name">
+      <strong>SGX EXIM</strong>
+      <span>PRIVATE LIMITED</span>
+    </div>
+  </div>
+</nav>
+
+<div class="admin-wrap">
+  <h2>Registered Users <span class="count-badge" id="countBadge">0</span></h2>
+  <div id="tableContainer">Loading...</div>
+</div>
+
+<script>
+  async function loadUsers() {
+    const container = document.getElementById('tableContainer');
+    const countBadge = document.getElementById('countBadge');
+    try {
+      const res = await fetch('/api/users');
+      const data = await res.json();
+
+      if (!data.success || data.users.length === 0) {
+        container.innerHTML = '<div class="empty-msg">No registered users yet.</div>';
+        return;
+      }
+
+      countBadge.textContent = data.users.length;
+
+      let rows = data.users.map(u => `
+        <tr>
+          <td>${u.fullName}</td>
+          <td>${u.email}</td>
+          <td>${u.companyName || '-'}</td>
+          <td>${u.phone || '-'}</td>
+          <td>${u.interest || '-'}</td>
+          <td>${new Date(u.createdAt).toLocaleString()}</td>
+        </tr>
+      `).join('');
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th><th>Email</th><th>Company</th><th>Phone</th><th>Interest</th><th>Registered On</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    } catch (err) {
+      container.innerHTML = '<div class="empty-msg">Failed to load users.</div>';
+    }
+  }
+
+  loadUsers();
+</script>
+
+</body>
+</html>

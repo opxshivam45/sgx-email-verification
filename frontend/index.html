@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Consultation | SGX Exim Private Limited</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar"></div>
+<nav>
+  <div class="brand">
+    <div class="logo">SGX</div>
+    <div class="name">
+      <strong>SGX EXIM</strong>
+      <span>PRIVATE LIMITED</span>
+    </div>
+  </div>
+  <div class="navlinks">
+    <span>Home</span>
+    <span>About Us</span>
+    <span>Services</span>
+    <span>Process</span>
+    <span>Global</span>
+    <span>Compliance</span>
+    <span class="active">Contact</span>
+    <span class="cta">Get a Quote</span>
+    <button id="themeToggle" class="theme-toggle" type="button" title="Toggle dark/light mode">🌙</button>
+  </div>
+</nav>
+
+<main>
+  <div class="card">
+    <h2>Request Consultation</h2>
+    <p>Please provide details about your product or import requirement. We maintain strict confidentiality.</p>
+
+    <form id="consultForm">
+      <div class="row-2">
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Your Name" required>
+        </div>
+        <div class="field">
+          <label for="companyName">Company Name</label>
+          <input type="text" id="companyName" name="companyName" placeholder="Your Company">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email Address</label>
+        <div class="email-wrap">
+          <input type="email" id="email" name="email" placeholder="name@company.com" required autocomplete="off">
+          <button type="button" id="sendOtpBtn" class="otp-btn">Send OTP</button>
+        </div>
+        <div class="email-status" id="emailStatus"></div>
+
+        <div class="field otp-field" id="otpField" style="display:none;">
+          <label for="otp">Enter OTP</label>
+          <div class="email-wrap">
+            <input type="text" id="otp" name="otp" placeholder="6-digit code" maxlength="6" autocomplete="off">
+            <button type="button" id="verifyOtpBtn" class="otp-btn">Verify</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+91...">
+      </div>
+
+      <div class="field">
+        <label for="interest">I am interested in:</label>
+        <select id="interest" name="interest">
+          <option>Product Sourcing (China)</option>
+          <option>Mortgage / Logistics Support</option>
+          <option>Customs Clearance</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Message / Details</label>
+        <textarea id="message" name="message" placeholder="Please briefly describe your requirement..."></textarea>
+      </div>
+
+      <button type="submit" class="submit" id="submitBtn">Submit Request</button>
+
+      <div class="form-status" id="formStatus"></div>
+    </form>
+  </div>
+</main>
+
+<div class="success-overlay" id="successOverlay">
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <h2>Request Submitted Successfully!</h2>
+    <p>Thank you for reaching out to SGX Exim Private Limited. Our team will review your requirement and contact you within 24–48 business hours.</p>
+    <button id="closeOverlayBtn" class="submit">Close</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+:root {
+  --navy: #0B1220;
+  --navy-soft: #131C2E;
+  --gold: #C89B3C;
+  --gold-hover: #B4872E;
+  --ink: #1A1A1A;
+  --label: #2B2B2B;
+  --placeholder-bg: #F3F4F6;
+  --border: #E2E4E9;
+  --green: #1E7B3C;
+  --red: #C0392B;
+  --page-bg: #F6F7F9;
+  --card-bg: #ffffff;
+  --card-text: #666666;
+}
+
+[data-theme="dark"] {
+  --navy: #05070C;
+  --navy-soft: #0F1626;
+  --gold: #D9AE55;
+  --gold-hover: #C89B3C;
+  --ink: #EDEDED;
+  --label: #D0D0D0;
+  --placeholder-bg: #1C2333;
+  --border: #2B3245;
+  --green: #3FCB6B;
+  --red: #E8604C;
+  --page-bg: #0B1220;
+  --card-bg: #131A29;
+  --card-text: #A6ACBB;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--page-bg);
+  color: var(--ink);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.topbar {
+  height: 4px;
+  background: var(--gold);
+}
+
+nav {
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.brand .logo {
+  width: 34px;
+  height: 34px;
+  background: var(--gold);
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  border-radius: 3px;
+}
+
+.brand .name {
+  line-height: 1.15;
+}
+
+.brand .name strong {
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+
+.brand .name span {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+}
+
+.navlinks {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+
+.navlinks span {
+  color: #C7CBD4;
+  font-size: 0.85rem;
+  cursor: default;
+}
+
+.navlinks span.active {
+  color: var(--gold);
+}
+
+.navlinks .cta {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 9px 18px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  cursor: default;
+}
+
+main {
+  max-width: 640px;
+  margin: 40px auto 60px;
+  padding: 0 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 28px 30px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.card h2 {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+}
+
+.card > p {
+  margin: 0 0 22px;
+  font-size: 0.88rem;
+  color: var(--card-text);
+}
+
+.row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 0;
+}
+
+.field { margin-bottom: 18px; }
+
+label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--label);
+  margin-bottom: 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  background: var(--placeholder-bg);
+  border-radius: 3px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--card-bg);
+}
+
+textarea { min-height: 100px; resize: vertical; }
+
+/* Email field verification states */
+.email-wrap {
+  position: relative;
+  display: flex;
+  gap: 8px;
+}
+
+.email-wrap input {
+  flex: 1;
+}
+
+.otp-btn {
+  flex-shrink: 0;
+  padding: 0 14px;
+  background: var(--navy);
+  color: var(--gold);
+  border: none;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.otp-btn:hover { background: var(--navy-soft); }
+.otp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.otp-field {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.email-wrap input.checking { border-color: #C89B3C; }
+.email-wrap input.taken { border-color: var(--red); background: rgba(192, 57, 43, 0.08); }
+.email-wrap input.available { border-color: var(--green); background: rgba(30, 123, 60, 0.08); }
+
+.email-status {
+  font-size: 0.8rem;
+  margin-top: 2px;
+  min-height: 0;
+  line-height: 14px;
+}
+
+.email-status.checking { color: #8A6D1F; }
+.email-status.taken { color: var(--red); }
+.email-status.available { color: var(--green); }
+
+button.submit {
+  width: 100%;
+  padding: 13px;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+button.submit:hover { background: var(--gold-hover); }
+button.submit:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.form-status {
+  margin-top: 16px;
+  padding: 11px 13px;
+  font-size: 0.87rem;
+  border-radius: 3px;
+  display: none;
+}
+
+.form-status.success {
+  display: block;
+  background: rgba(30, 123, 60, 0.12);
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.form-status.error {
+  display: block;
+  background: rgba(192, 57, 43, 0.1);
+  color: var(--red);
+  border: 1px solid var(--red);
+}
+
+/* Dark / light mode toggle button */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.15s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(200, 155, 60, 0.15);
+}
+
+/* Full-screen success overlay */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 18, 32, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.success-overlay.show {
+  display: flex;
+}
+
+.success-card {
+  background: var(--card-bg);
+  border-radius: 6px;
+  padding: 40px 36px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  animation: popIn 0.25s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-card h2 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+.success-card p {
+  margin: 0 0 22px;
+  font-size: 0.88rem;
+  color: var(--card-text);
+  line-height: 1.5;
+}
+
+.success-card .submit {
+  width: auto;
+  padding: 11px 32px;
+}
