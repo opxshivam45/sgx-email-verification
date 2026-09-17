@@ -1,11 +1,19 @@
 const nodemailer = require('nodemailer');
 
+// Using explicit SMTP settings instead of the "service: 'gmail'" shorthand.
+// The shorthand can resolve inconsistently on some cloud hosts (like Render),
+// leading to connection timeouts. Explicit host/port is more reliable.
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // true for port 465, false for port 587 (STARTTLS)
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD
-  }
+  },
+  connectionTimeout: 20000, // 20 seconds to establish connection
+  greetingTimeout: 20000,
+  socketTimeout: 20000
 });
 
 // Generates a random 6-digit numeric OTP
